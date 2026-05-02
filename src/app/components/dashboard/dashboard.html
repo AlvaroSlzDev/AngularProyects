@@ -1,0 +1,32 @@
+<main>
+  <section class="text-center mt-4 mb-4">
+    <h3>Search your city weather</h3>
+  </section>
+
+  <section class="d-flex justify-content-center mb-4">
+    @if (serviceApi.data(); as data) {
+      <div class="card" style="width: 18rem;">
+        <img [src]="'https://openweathermap.org/img/wn/' + data.weather[0].icon + '@2x.png'"
+             class="card-img-top" [alt]="data.weather[0].description">
+
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ data.name }}</h5>
+          <p class="card-text text-capitalize">{{ data.weather[0].description }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Temperatura: <b>{{ data.main.temp }}°C</b></li>
+          <li class="list-group-item">Humedad: {{ data.main.humidity }}%</li>
+          <li class="list-group-item">Viento: {{ data.wind.speed }} m/s</li>
+        </ul>
+      </div>
+    } @else {
+      <p class="text-muted">No city selected or found.</p>
+    }
+  </section>
+
+  <section class="d-flex justify-content-center gap-2 mt-4 mb-4">
+    <input #cityInput type="text" placeholder="Enter city name"
+           (keyup.enter)="queryCity(cityInput.value)"/>
+    <button class="btn btn-primary" (click)="queryCity(cityInput.value)">Search</button>
+  </section>
+</main>
