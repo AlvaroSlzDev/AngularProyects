@@ -1,0 +1,29 @@
+<main>
+  <section class="d-flex justify-content-center align-items-center flex-row mt-3">
+    <h4 class="text-warning">Personajes Rick & Morty</h4>
+  </section>
+  <section class="d-flex justify-content-center align-items-center mt-3 mb-3">
+    <div class="">
+      <button class="btn btn-primary" (click)="statusChange('All')">All</button>
+      <button class="btn btn-success" (click)="statusChange('Alive')">Alives</button>
+      <button class="btn btn-danger"(click)="statusChange('Dead')">Dead</button>
+      <button class="btn btn-secondary" (click)="statusChange('unknown')">UnKnow</button>
+    </div>
+  </section>
+  <section class="galery">
+    @for (p of listFilterByStatus() ; track $index) {
+      <div class="card" style="width: 18rem;">
+        <img src="{{p.image}}" class="card-img-top" alt="{{p.name}}">
+        <div class="card-body">
+          <h5 class="card-title">ID: {{p.id}} - Name: {{p.name}}</h5>
+          <p class="card-text">Personaje de Rick y Morty</p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Specie: {{p.species}}</li>
+          <li class="list-group-item">Name: {{p.origin.name}}</li>
+          <li class="list-group-item">Status: {{p.status}}</li>
+        </ul>
+      </div>
+    }
+  </section>
+</main>
